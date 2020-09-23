@@ -198,6 +198,7 @@ public abstract class FrontendConnection extends AbstractConnection {
 
 	public boolean setCharsetIndex(int ci) {
 		String charset = CharsetUtil.getCharset(ci);
+		System.out.println("FrontendConnection==="+charset);
 		if (charset != null) {
 			return setCharset(charset);
 		} else {
@@ -392,6 +393,7 @@ public abstract class FrontendConnection extends AbstractConnection {
 			writeErrMessage(ErrorCode.ER_UNKNOWN_CHARACTER_SET, "Unknown charset '" + charset + "'");
 			return;
 		}
+		System.out.println("FrontendConnection====INSERT/SELECT/UPDATE/DELETE======");
 		// 执行语句
 		this.query( sql );
 	}

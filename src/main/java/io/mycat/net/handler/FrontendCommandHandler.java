@@ -75,6 +75,7 @@ public class FrontendCommandHandler implements NIOHandler
                 /**
                  * INSERT/SELECT/UPDATE/DELETE 等 SQL 归属于 MySQLPacket.COM_QUERY
                  */
+                System.out.println("FrontendCommandHandler === INSERT/SELECT/UPDATE/DELETE======");
                 // 计数查询命令
                 commands.doQuery();
                 // 执行查询命令

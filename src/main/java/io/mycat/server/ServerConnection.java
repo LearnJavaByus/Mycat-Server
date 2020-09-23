@@ -160,6 +160,7 @@ public class ServerConnection extends FrontendConnection {
 	}
 
 	public void execute(String sql, int type) {
+		System.out.println("ServerConnection====INSERT/SELECT/UPDATE/DELETE======");
 		//连接状态检查
 		if (this.isClosed()) {
 			LOGGER.warn("ignore execute ,server connection is closed " + this);

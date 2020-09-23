@@ -382,6 +382,7 @@ public class MySQLConnection extends BackendAIOConnection {
 				conn.oldSchema = conn.schema;
 			}
 			if (charsetIndex != null) {
+				System.out.println("MySQLConnection==="+CharsetUtil.getCharset(charsetIndex));
 				conn.setCharset(CharsetUtil.getCharset(charsetIndex));
 			}
 			if (txtIsolation != null) {
@@ -452,6 +453,7 @@ public class MySQLConnection extends BackendAIOConnection {
 			//need to syn the charset of connection.
 			//set current connection charset to client charset.
 			//otherwise while sending commend to server the charset will not coincidence.
+			System.out.println("synAndDoExecute()======="+CharsetUtil.getCharset(clientCharSetIndex));
 			setCharset(CharsetUtil.getCharset(clientCharSetIndex));
 			charsetSyn = 1;
 		}

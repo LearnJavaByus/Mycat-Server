@@ -166,6 +166,7 @@ public class ServerQueryHandler implements FrontendQueryHandler {
 				c.writeErrMessage(ErrorCode.ER_USER_READ_ONLY, "User readonly");
 				break;
 			}
+			System.out.println("ServerQueryHandler====INSERT/SELECT/UPDATE/DELETE======");
 			c.execute(sql, rs & 0xff);
 		}
 	}

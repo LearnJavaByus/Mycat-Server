@@ -123,7 +123,7 @@ public class MycatConfig {
 		con.setPacketHeaderSize(system.getPacketHeaderSize());
 		con.setIdleTimeout(system.getIdleTimeout());
 		con.setCharset(system.getCharset());
-
+		System.out.println("mycatConfig===="+system.getCharset());
 	}
 
 	public Map<String, UserConfig> getUsers() {
