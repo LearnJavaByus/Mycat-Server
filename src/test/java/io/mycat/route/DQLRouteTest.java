@@ -40,8 +40,8 @@ public class DQLRouteTest {
 	protected DruidShardingParseInfo ctx;
 
 	public DQLRouteTest() {
-		String schemaFile = "/route/schema.xml";
-		String ruleFile = "/route/rule.xml";
+		String schemaFile = "/backups/route/schema.xml";
+		String ruleFile = "/backups/route/rule.xml";
 		SchemaLoader schemaLoader = new XMLSchemaLoader(schemaFile, ruleFile);
 		schemaMap = schemaLoader.getSchemas();
 		MycatServer.getInstance().getConfig().getSchemas().putAll(schemaMap);

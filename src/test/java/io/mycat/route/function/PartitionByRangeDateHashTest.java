@@ -72,8 +72,8 @@ public class PartitionByRangeDateHashTest
     protected RouteStrategy routeStrategy = RouteStrategyFactory.getRouteStrategy("druidparser");
 
     public PartitionByRangeDateHashTest() {
-        String schemaFile = "/route/schema.xml";
-        String ruleFile = "/route/rule.xml";
+        String schemaFile = "/backups/route/schema.xml";
+        String ruleFile = "/backups/route/rule.xml";
         SchemaLoader schemaLoader = new XMLSchemaLoader(schemaFile, ruleFile);
         schemaMap = schemaLoader.getSchemas();
     }

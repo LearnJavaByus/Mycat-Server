@@ -69,7 +69,7 @@ public class ServerQueryHandler implements FrontendQueryHandler {
 		if (LOGGER.isDebugEnabled()) {
 			LOGGER.debug(new StringBuilder().append(c).append(sql).toString());
 		}
-		//
+		// 解析 SQL 类型
 		int rs = ServerParse.parse(sql);
 		int sqlType = rs & 0xff;
 

@@ -391,8 +391,8 @@ public abstract class FrontendConnection extends AbstractConnection {
 		} catch (UnsupportedEncodingException e) {
 			writeErrMessage(ErrorCode.ER_UNKNOWN_CHARACTER_SET, "Unknown charset '" + charset + "'");
 			return;
-		}		
-		
+		}
+		// 执行语句
 		this.query( sql );
 	}
 

@@ -49,7 +49,7 @@ public class RuleFunctionSuitTableTest {
 		 * 3001-4000=1
 		*/
 		AutoPartitionByLong autoPartition2 = new AutoPartitionByLong();
-		autoPartition2.setMapFile("autopartition-long-dupl.txt");
+		autoPartition2.setMapFile("backups/autopartition-long-dupl.txt");
 		autoPartition2.init();
 		Assert.assertEquals(2, autoPartition2.getPartitionNum());
 		RuleConfig rule2 = new RuleConfig("id", "auto-partition-long-dupl");
@@ -161,7 +161,7 @@ public class RuleFunctionSuitTableTest {
 	@Test
 	public void testPartitionByPattern() {
 		PartitionByPattern partition = new PartitionByPattern();
-		partition.setMapFile("partition-pattern.txt");
+		partition.setMapFile("backups/partition-pattern.txt");
 		partition.init();
 		
 		/*
@@ -184,7 +184,7 @@ public class RuleFunctionSuitTableTest {
 	@Test
 	public void testPartitionByPrefixPattern() {
 		PartitionByPrefixPattern partition = new PartitionByPrefixPattern();
-		partition.setMapFile("partition_prefix_pattern.txt");
+		partition.setMapFile("backups/partition_prefix_pattern.txt");
 		partition.init();
 		
 		

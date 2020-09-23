@@ -237,7 +237,7 @@ public class ServerConnection extends FrontendConnection {
 					schema = schemaConfig;
 			}
 		}
-
+		// 路由到后端数据库，执行 SQL
 		routeEndExecuteSQL(sql, type, schema);
 
 	}

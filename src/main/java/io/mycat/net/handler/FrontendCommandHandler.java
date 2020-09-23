@@ -71,8 +71,13 @@ public class FrontendCommandHandler implements NIOHandler
                 commands.doInitDB();
                 source.initDB(data);
                 break;
-            case MySQLPacket.COM_QUERY:
+            case MySQLPacket.COM_QUERY:// 查询命令
+                /**
+                 * INSERT/SELECT/UPDATE/DELETE 等 SQL 归属于 MySQLPacket.COM_QUERY
+                 */
+                // 计数查询命令
                 commands.doQuery();
+                // 执行查询命令
                 source.query(data);
                 break;
             case MySQLPacket.COM_PING:

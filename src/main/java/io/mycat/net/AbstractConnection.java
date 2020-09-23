@@ -104,7 +104,7 @@ public abstract class AbstractConnection implements NIOConnection {
 	}
 
 	public boolean setCharset(String charset) {
-
+		System.out.println("============开始=============="+charset);
 		// 修复PHP字符集设置错误, 如： set names 'utf8'
 		if (charset != null) {
 			charset = charset.replace("'", "");
@@ -113,6 +113,7 @@ public abstract class AbstractConnection implements NIOConnection {
 		int ci = CharsetUtil.getIndex(charset);
 		if (ci > 0) {
 			this.charset = charset.equalsIgnoreCase("utf8mb4") ? "utf8" : charset;
+			System.out.println("============this.charset=============="+this.charset);
 			this.charsetIndex = ci;
 			return true;
 		} else {
