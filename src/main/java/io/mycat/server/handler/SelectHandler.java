@@ -36,25 +36,33 @@ public final class SelectHandler {
 
 	public static void handle(String stmt, ServerConnection c, int offs) {
 		int offset = offs;
+		// 解析 Select SQL 类型
 		switch (ServerParseSelect.parse(stmt, offs)) {
+			// select @@VERSION_COMMENT;
 		case ServerParseSelect.VERSION_COMMENT:
 			SelectVersionComment.response(c);
 			break;
+			// select DATABASE();
 		case ServerParseSelect.DATABASE:
 			SelectDatabase.response(c);
 			break;
+			// select CURRENT_USER();
 		case ServerParseSelect.USER:
 			SelectUser.response(c);
 			break;
+			// select VERSION();
 		case ServerParseSelect.VERSION:
 			SelectVersion.response(c);
 			break;
+			// select @@session.auto_increment_increment;
 		case ServerParseSelect.SESSION_INCREMENT:
 			SessionIncrement.response(c);
 			break;
+			// select @@session.tx_isolation;
 		case ServerParseSelect.SESSION_ISOLATION:
 			SessionIsolation.response(c);
 			break;
+			// select LAST_INSERT_ID();
 		case ServerParseSelect.LAST_INSERT_ID:
 			// offset = ParseUtil.move(stmt, 0, "select".length());
 			loop:for (int l=stmt.length(); offset < l; ++offset) {
@@ -74,6 +82,7 @@ public final class SelectHandler {
 			offset = ServerParseSelect.skipAs(stmt, offset);
 			SelectLastInsertId.response(c, stmt, offset);
 			break;
+			// select @@identity
 		case ServerParseSelect.IDENTITY:
 			// offset = ParseUtil.move(stmt, 0, "select".length());
 			loop:for (int l=stmt.length(); offset < l; ++offset) {
@@ -102,6 +111,7 @@ public final class SelectHandler {
 				SelectTxReadOnly.response(c);
 				break;
 		default:
+			// 其他，例如 select * from table
 			c.execute(stmt, ServerParse.SELECT);
 		}
 	}

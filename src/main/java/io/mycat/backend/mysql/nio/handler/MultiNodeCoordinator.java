@@ -80,19 +80,19 @@ public class MultiNodeCoordinator implements ResponseHandler {
 					if(session.getXaTXID()!=null){
 						xaTxId = session.getXaTXID() +",'"+ mysqlCon.getSchema()+"'";
 					}
-					if (mysqlCon.getXaStatus() == TxState.TX_STARTED_STATE)
+					if (mysqlCon.getXaStatus() == TxState.TX_STARTED_STATE) // XA 事务
 					{
 						//recovery Log
 //						participantLogEntry[started] = new ParticipantLogEntry(xaTxId,conn.getHost(),0,conn.getSchema(),((MySQLConnection) conn).getXaStatus());
-						String[] cmds = new String[]{"XA END " + xaTxId,
-								"XA PREPARE " + xaTxId};
+						String[] cmds = new String[]{"XA END " + xaTxId,// XA END 命令
+								"XA PREPARE " + xaTxId}; // XA PREPARE 命令
 						if (LOGGER.isDebugEnabled()) {
 							LOGGER.debug("Start execute the batch cmd : "+ cmds[0] + ";" + cmds[1]+","+
 									"current connection:"+conn.getHost()+":"+conn.getPort());
 						}
 //						prepareCount.incrementAndGet();
 						mysqlCon.execBatchCmd(cmds);
-					} else
+					} else // 非 XA 事务
 					{
 						//recovery Log
 //						participantLogEntry[started] = new ParticipantLogEntry(xaTxId,conn.getHost(),0,conn.getSchema(),((MySQLConnection) conn).getXaStatus());

@@ -137,10 +137,11 @@ public class RouteService {
 			}
 		} else {
 			stmt = stmt.trim();
+			// 操作策略路由
 			rrs = RouteStrategyFactory.getRouteStrategy().route(sysconf, schema, sqlType, stmt,
 					charset, sc, tableId2DataNodeCache);
 		}
-
+		// 记录查询命令路由结果缓存
 		if (rrs != null && sqlType == ServerParse.SELECT && rrs.isCacheAble()) {
 			sqlRouteCache.putIfAbsent(cacheKey, rrs);
 		}

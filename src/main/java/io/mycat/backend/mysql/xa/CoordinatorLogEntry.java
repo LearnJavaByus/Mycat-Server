@@ -10,11 +10,16 @@ import java.io.Serializable;
 public class CoordinatorLogEntry implements Serializable {
 
     private static final long serialVersionUID = -919666492191340531L;
-
+    /**
+     * XA 事务编号
+     */
     public final String id;
 
 //    public final boolean wasCommitted;
     public long createTime;
+    /**
+     * 参与者日志数组
+     */
     public final ParticipantLogEntry[] participants;
 
 

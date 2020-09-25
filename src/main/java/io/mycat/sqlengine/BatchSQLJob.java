@@ -7,8 +7,13 @@ import io.mycat.MycatServer;
 import io.mycat.config.model.SystemConfig;
 
 public class BatchSQLJob {
-
+	/**
+	 * 执行中任务列表
+	 */
 	private ConcurrentHashMap<Integer, SQLJob> runningJobs = new ConcurrentHashMap<Integer, SQLJob>();
+	/**
+	 * 待执行任务列表
+	 */
 	private ConcurrentLinkedQueue<SQLJob> waitingJobs = new ConcurrentLinkedQueue<SQLJob>();
 	private volatile boolean noMoreJobInput = false;
 	/*
@@ -22,6 +27,7 @@ public class BatchSQLJob {
 			runJob(newJob);
 		} else {
 			waitingJobs.offer(newJob);
+			// 若无正在执行中的任务，则从等待队列里获取任务进行执行
 			if (runningJobs.isEmpty()) {
 				SQLJob job = waitingJobs.poll();
 				if (job != null) {

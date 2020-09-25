@@ -100,6 +100,7 @@ public class MySQLConnectionHandler extends BackendAsyncHandler {
 						handleRequestPacket(data);
 						break;
 					default:
+						// 初始化 header fields
 						resultStatus = RESULT_STATUS_HEADER;
 						header = data;
 						fields = new ArrayList<byte[]>((int) ByteUtil.readLength(data,
@@ -112,11 +113,12 @@ public class MySQLConnectionHandler extends BackendAsyncHandler {
 						resultStatus = RESULT_STATUS_INIT;
 						handleErrorPacket(data);
 						break;
-					case EOFPacket.FIELD_COUNT:
+					case EOFPacket.FIELD_COUNT:// 解析 fields 结束
 						resultStatus = RESULT_STATUS_FIELD_EOF;
 						handleFieldEofPacket(data);
 						break;
 					default:
+						// 解析 fields
 						fields.add(data);
 				}
 				break;
@@ -126,11 +128,12 @@ public class MySQLConnectionHandler extends BackendAsyncHandler {
 						resultStatus = RESULT_STATUS_INIT;
 						handleErrorPacket(data);
 						break;
-					case EOFPacket.FIELD_COUNT:
+					case EOFPacket.FIELD_COUNT:// 解析 每行记录 结束
 						resultStatus = RESULT_STATUS_INIT;
 						handleRowEofPacket(data);
 						break;
 					default:
+						// 每行记录
 						handleRowPacket(data);
 				}
 				break;
