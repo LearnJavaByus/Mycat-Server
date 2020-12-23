@@ -334,6 +334,11 @@ public class MySQLConnection extends BackendAIOConnection {
 		}
 	}
 
+	/**
+	 * //设置开启事务
+	 * @param sb
+	 * @param autoCommit
+	 */
 	private void getAutocommitCommand(StringBuilder sb, boolean autoCommit) {
 		if (autoCommit) {
 			sb.append("SET autocommit=1;");
@@ -418,6 +423,7 @@ public class MySQLConnection extends BackendAIOConnection {
 		if (!modifiedSQLExecuted && rrn.isModifySQL()) {
 			modifiedSQLExecuted = true;
 		}
+		//获取当前事务 ID
 		String xaTXID = null;
 		if(sc.getSession2().getXaTXID()!=null){
 			xaTXID = sc.getSession2().getXaTXID()+",'"+getSchema()+"'";
