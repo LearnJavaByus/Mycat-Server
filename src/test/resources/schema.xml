@@ -12,7 +12,10 @@
               writeType="0" dbType="mysql" dbDriver="native" switchType="1" slaveThreshold="100">
         <heartbeat>select user()</heartbeat>
         <writeHost host="hostM1" url="127.0.0.1:3306" user="root" password="rootroot"> <!-- ‼️‼️‼️ url、user、password 设置成你的数据库 -->
+            <readHost host="hostM2" url="127.0.0.1:3306" password="rootroot" user="root"></readHost>
         </writeHost>
+
     </dataHost>
 
+    
 </mycat:schema>
